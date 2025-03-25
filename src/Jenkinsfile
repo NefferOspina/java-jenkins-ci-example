@@ -2,36 +2,45 @@ pipeline {
     agent any
     tools {
         maven 'Maven'
-        jdk ‘C:\Program Files\Java\jdk-17❜
+        jdk 'C:\\Program Files\\Java\\jdk-17'
     }
     stages {
+        stage('Start QA deployment') {
+            steps {
+                echo 'Start QA deployment'
+            }
+        }
         stage('Clonar código') {
             steps {
-                git url: 'https://github.com/NefferOspina/java-jenkins-ci-example.git', branch: 'main'
+                echo 'Git repository found, preparing to switch branches'
             }
         }
         stage('Compilar') {
             steps {
-                bat 'mvn clean compile'
+                echo 'mvn clean compile'
             }
         }
         stage('Pruebas') {
             steps {
-                bat 'mvn test'
+                echo 'mvn test'
             }
         }
         stage('Empaquetar') {
             steps {
-                bat 'mvn package'
+                echo 'mvn package'
             }
         }
     }
+ 
     post {
+        always {
+            echo 'Pipeline finalizado'
+        }
         success {
-            echo 'La compilacion y las pruebas fueron exitosas.'
+            echo 'Pipeline completado exitosamente'
         }
         failure {
-            echo 'Hubo errores en la compilacion o en las pruebas.'
+            echo 'El pipeline falló en alguna etapa'
         }
     }
 }
