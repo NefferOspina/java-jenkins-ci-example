@@ -2,12 +2,12 @@ pipeline {
     agent any
     tools {
         maven 'Maven'
-        jdk 'JDK instalado'
+        jdk 'jdk-17'
     }
     stages {
         stage('Clonar código') {
             steps {
-                git url: 'https://github.com/TU_USUARIO/java-jenkins-ci-example.git', branch: 'main'
+                git url: 'https://github.com/NefferOspina/java-jenkins-ci-example.git', branch: 'main'
             }
         }
         stage('Compilar') {
