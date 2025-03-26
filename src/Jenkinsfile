@@ -1,6 +1,9 @@
 pipeline {
     agent any
-   
+    tools {
+        maven 'Maven'
+        jdk 'C:\\Program Files\\Java\\jdk-17'
+    }
     stages {
         stage('Clonar código') {
             steps {
